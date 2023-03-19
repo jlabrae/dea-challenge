@@ -1,0 +1,13 @@
+<div>
+    <label>Enter a CIDR format IP block</label>
+    <input #hostAddress type="text"/>
+    <select #mask>
+        <option *ngFor="let number of [].constructor(33); let i = index" value="{{ 32-i }}">{{ 32-i }}</option>
+    </select>
+    <button (click)="createIPBlock(hostAddress.value, mask.value)">Submit</button>
+</div>
+<div>
+    <label>Response:</label>
+    <code><!-- HTTP RESPONSE CODE (200, 404, etc) HERE --></code>
+    <code><!-- HTTP RESPONSE HERE --></code>
+</div>

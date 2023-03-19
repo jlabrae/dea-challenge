@@ -7,4 +7,13 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'ipv4manager';
+
+  activeTab: string = 'create';
+
+  constructor() {}
+
+  onClick(activeTab: string) {
+    this.activeTab = activeTab
+    console.log('clicked', this.activeTab)
+  }
 }

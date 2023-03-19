@@ -1,0 +1,14 @@
+<div>
+    <input #acquiringAddress type="text">
+    <button (click)="acquireAddress(acquiringAddress.value)">Acquire</button>
+</div>
+<div>
+    <input #releasingAddress type="text">
+    <button (click)="releaseAddress(releasingAddress.value)">Release</button>
+</div>
+<div>
+    <label>Response:</label>
+    <div><!-- Message here i.e. succesfully acquired/released ip: <ip-address>! --></div>
+    <code><!-- HTTP RESPONSE CODE (200, 404, etc) HERE --></code>
+    <code><!-- HTTP RESPONSE HERE --></code>
+</div>
