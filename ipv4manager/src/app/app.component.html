@@ -1,19 +1,27 @@
-<div>
+<div class="container mt-3">
 
   <!-- Navigation Tabs -->
-  <ul>
+  <ul class="nav nav-pills nav-justified">
     <li #createTab
+      class="nav-item nav-link"
+      [ngClass]="activeTab === 'create' ? 'active' : ''"
       id="createTab"
       (click)="onClick('create')">Create IP Block</li>
     <li #getAllTab
+      class="nav-item nav-link"
+      [ngClass]="activeTab === 'get-all' ? 'active' : ''"
       id="getAllTab"
       (click)="onClick('get-all')">Get All IPs</li>
     <li #acquireReleaseTab
+      class="nav-item nav-link"
+      [ngClass]="activeTab === 'acquire-release' ? 'active' : ''"
       id="acquireReleaseTab"
       (click)="onClick('acquire-release')">Acquire/Release IP</li>
   </ul>
 
-  <div [ngSwitch]="activeTab">
+  <div
+    class="m-2"
+    [ngSwitch]="activeTab">
     <create-ip-block
       *ngSwitchCase="'create'">
     </create-ip-block>

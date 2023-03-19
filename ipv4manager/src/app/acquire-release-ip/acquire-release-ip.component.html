@@ -1,13 +1,24 @@
-<div>
-    <input #acquiringAddress type="text">
-    <button (click)="acquireAddress(acquiringAddress.value)">Acquire</button>
+<div class="row mb-2">
+    <div class="col-8">
+        <div class="input-group">
+            <label class="input-group-text">Enter a created IP address to acquire</label>
+            <input #acquiringAddress class="form-control" type="text">
+            <button class="btn btn-outline-secondary" (click)="acquireAddress(acquiringAddress.value)">Acquire</button>
+        </div>
+    </div>
 </div>
-<div>
-    <input #releasingAddress type="text">
-    <button (click)="releaseAddress(releasingAddress.value)">Release</button>
+<div class="row mb-2">
+    <div class="col-8">
+        <div class="input-group">
+            <label class="input-group-text">Enter an acquired IP address to release</label>
+            <input #releasingAddress class="form-control" type="text">
+            <button class="btn btn-outline-secondary" (click)="releaseAddress(releasingAddress.value)">Release</button>
+        </div>
+    </div>
 </div>
-<div>
-    <label>Response:</label>
+
+<div class="row">
+    <!-- <label>Response:</label> -->
     <div><!-- Message here i.e. succesfully acquired/released ip: <ip-address>! --></div>
     <code><!-- HTTP RESPONSE CODE (200, 404, etc) HERE --></code>
     <code><!-- HTTP RESPONSE HERE --></code>
