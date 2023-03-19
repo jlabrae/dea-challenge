@@ -1,31 +1,59 @@
-import { TestBed } from '@angular/core/testing';
+import { Component } from '@angular/core';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { AppComponent } from './app.component';
 
-describe('AppComponent', () => {
+describe('AppComponent (with beforeEach)', () => {
+  let component: AppComponent;
+  let fixture: ComponentFixture<AppComponent>;
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [
-        AppComponent
+        AppComponent,
+        MockCreateIpBlockComponent,
+        MockGetAllIpsComponent,
+        MockAcquireReleaseIpComponent
       ],
     }).compileComponents();
+
+    fixture = TestBed.createComponent(AppComponent);
+    component = fixture.componentInstance;
+    fixture.detectChanges();
   });
 
   it('should create the app', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.componentInstance;
-    expect(app).toBeTruthy();
+    expect(component).toBeDefined();
   });
 
-  it(`should have as title 'ipv4manager'`, () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.componentInstance;
-    expect(app.title).toEqual('ipv4manager');
+  it(`should have active tab as 'create'`, () => {
+    expect(component.activeTab).toEqual('create');
   });
 
-  it('should render title', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    fixture.detectChanges();
-    const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('.content span')?.textContent).toContain('ipv4manager app is running!');
+  it('should change activeTab based on click', () => {
+    expect(component.activeTab).toEqual('create');
+    const element: HTMLElement = fixture.nativeElement as HTMLElement;
+    (element.querySelector('#getAllTab') as HTMLElement).click();
+    expect(component.activeTab).toEqual('get-all');
+    (element.querySelector('#acquireReleaseTab') as HTMLElement).click();
+    expect(component.activeTab).toEqual('acquire-release');
+    (element.querySelector('#createTab') as HTMLElement).click();
+    expect(component.activeTab).toEqual('create');
   });
 });
+
+@Component({
+  selector: 'create-ip-block',
+  template: ''
+})
+class MockCreateIpBlockComponent {}
+
+@Component({
+  selector: 'get-all-ips',
+  template: ''
+})
+class MockGetAllIpsComponent {}
+
+@Component({
+  selector: 'acquire-release-ip',
+  template: ''
+})
+class MockAcquireReleaseIpComponent {}

@@ -18,7 +18,12 @@ export class GetAllIpsComponent {
   ) { }
 
   ngOnInit() {
-    this.subscription.add(this.ipv4Svc.getAllIPs().subscribe({
+    this.subscription.add(this.getAllIPs());
+  }
+
+
+  getAllIPs(): Subscription {
+    return this.ipv4Svc.getAllIPs().subscribe({
       next: (result) => {
         console.log('success!', result);
         this.ipList = result;
@@ -27,9 +32,8 @@ export class GetAllIpsComponent {
         console.log('error!', error);
       },
       complete: () => { console.log('getAllIPs callback Completed!');}
-    }));
+    });
   }
-
 
   ngOnDestroy() {
     this.subscription.unsubscribe();

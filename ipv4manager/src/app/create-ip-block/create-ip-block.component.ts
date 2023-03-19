@@ -8,6 +8,8 @@ import { Ipv4managerService } from '../ipv4manager.service';
 })
 export class CreateIpBlockComponent {
 
+  result: any;
+
   constructor(
     private ipv4Svc: Ipv4managerService
   ) { }
@@ -26,6 +28,7 @@ export class CreateIpBlockComponent {
     this.ipv4Svc.createBlock(cidrBlock).subscribe({
       next: (result) => {
         console.log('Block created!', result)
+        this.result = result;
       },
       error: (error) => {
         console.log('There was an error in creating the block!', error)

@@ -2,9 +2,15 @@
 
   <!-- Navigation Tabs -->
   <ul>
-    <li (click)="onClick('create')">Create IP Block</li>
-    <li (click)="onClick('get-all')">Get All IPs</li>
-    <li (click)="onClick('acquire-release')">Acquire/Release IP</li>
+    <li #createTab
+      id="createTab"
+      (click)="onClick('create')">Create IP Block</li>
+    <li #getAllTab
+      id="getAllTab"
+      (click)="onClick('get-all')">Get All IPs</li>
+    <li #acquireReleaseTab
+      id="acquireReleaseTab"
+      (click)="onClick('acquire-release')">Acquire/Release IP</li>
   </ul>
 
   <div [ngSwitch]="activeTab">

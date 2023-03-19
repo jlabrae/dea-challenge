@@ -8,6 +8,8 @@ import { Ipv4managerService } from '../ipv4manager.service';
 })
 export class AcquireReleaseIpComponent {
 
+  result: any;
+  
   constructor(
     private ipv4Svc: Ipv4managerService
   ) { }
@@ -24,6 +26,7 @@ export class AcquireReleaseIpComponent {
     this.ipv4Svc.acquireIP(ipAddress).subscribe({
       next: (result) => {
         console.log('Address acquired!', result)
+        this.result = result;
       },
       error: (error) => {
         console.log('There was an error in acquiring the address!', error)
@@ -38,6 +41,7 @@ export class AcquireReleaseIpComponent {
     this.ipv4Svc.releaseIP(ipAddress).subscribe({
       next: (result) => {
         console.log('Address released!', result)
+        this.result = result;
       },
       error: (error) => {
         console.log('There was an error in realeasing the address!', error)

@@ -8,24 +8,25 @@ import { Observable } from 'rxjs';
 })
 export class Ipv4managerService {
 
+  baseURL: string = 'http://localhost:8080';
   
   constructor(
     private http: HttpClient
   ) { }
 
   public createBlock(ipBlock: string): Observable<any> {
-    return this.http.put('http://localhost:8080/createBlock', ipBlock);
+    return this.http.put(`${this.baseURL}/createBlock`, ipBlock);
   }
 
   public acquireIP(ipAddress: string): Observable<any> {
-    return this.http.put('http://localhost:8080/acquireIP', ipAddress);
+    return this.http.put(`${this.baseURL}/acquireIP`, ipAddress);
   }
 
   public releaseIP(ipAddress: string): Observable<any> {
-    return this.http.put('http://localhost:8080/releaseIP', ipAddress);
+    return this.http.put(`${this.baseURL}/releaseIP`, ipAddress);
   }
 
   public getAllIPs(): Observable<any> {
-    return this.http.get('http://localhost:8080/getAllIPs');
+    return this.http.get(`${this.baseURL}/getAllIPs`);
   }
 }
