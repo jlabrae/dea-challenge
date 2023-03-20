@@ -1,5 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
+import { Subscription } from 'rxjs';
 import { Ipv4managerService } from '../ipv4manager.service';
+import { Util } from '../util';
 
 @Component({
   selector: 'create-ip-block',
@@ -8,34 +10,40 @@ import { Ipv4managerService } from '../ipv4manager.service';
 })
 export class CreateIpBlockComponent {
 
-  result: any;
+  @Output() createEvent: EventEmitter<string> = new EventEmitter();
+
+  result: string = '';
+  responseMessage: string = '';
+  isInputValid: boolean = false;
+  isValidationMessageShown: boolean = false;
+
+  private subscription: Subscription = new Subscription();
 
   constructor(
     private ipv4Svc: Ipv4managerService
   ) { }
 
-  ngOnInit() {
-
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
   }
 
-  ngOnDestroy() {
-    
+  checkInput(input: string) {
+    this.isInputValid = Util.isValidIPFormat(input);
+    this.isValidationMessageShown = (input.length > 0 && !this.isInputValid);
   }
 
   createIPBlock(hostAddress: string, mask: string) {
-    console.log('Create IP Block', hostAddress, mask)
     let cidrBlock = `${hostAddress}/${mask}`;
-    this.ipv4Svc.createBlock(cidrBlock).subscribe({
-      next: (result) => {
-        console.log('Block created!', result)
-        this.result = result;
+    this.subscription.add(this.ipv4Svc.createBlock(cidrBlock).subscribe({
+      next: (response) => {
+        this.responseMessage = `${response.status}: ${response.statusText}`;
+        this.result = JSON.stringify(response.body, null, 4);
       },
       error: (error) => {
-        console.log('There was an error in creating the block!', error)
+        this.responseMessage = `${error.status}: ${error.error.message}`;
+        this.result = JSON.stringify(error.error, null, 4);      
       },
-      complete: () => {
-        console.log("Create block COMPLETE")
-      }
-    });
+      complete: () => this.createEvent.emit()
+    }));
   }
 }

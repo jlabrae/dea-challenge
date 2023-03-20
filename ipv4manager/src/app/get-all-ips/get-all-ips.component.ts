@@ -11,7 +11,7 @@ export class GetAllIpsComponent {
 
   ipList: any[] = [];
 
-  subscription: Subscription = new Subscription();
+  private subscription: Subscription = new Subscription();
 
   constructor(
     private ipv4Svc: Ipv4managerService
@@ -21,17 +21,14 @@ export class GetAllIpsComponent {
     this.subscription.add(this.getAllIPs());
   }
 
-
   getAllIPs(): Subscription {
     return this.ipv4Svc.getAllIPs().subscribe({
-      next: (result) => {
-        console.log('success!', result);
-        this.ipList = result;
+      next: (response) => {
+        this.ipList = response.body;
       },
       error: (error) => {
         console.log('error!', error);
-      },
-      complete: () => { console.log('getAllIPs callback Completed!');}
+      }
     });
   }
 

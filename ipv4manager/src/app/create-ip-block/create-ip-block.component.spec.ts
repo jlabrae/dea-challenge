@@ -30,12 +30,16 @@ describe('CreateIpBlockComponent', () => {
 
   it('should update result message on createIPBlock', () => {
     const partialResponse = {
-      block: '10.10.0.0/30',
-      createdBy: 'tester'
+      body:
+        {
+        block: '10.10.0.0/30',
+        createdBy: 'tester'
+      }
     };
 
     ipv4SvcSpy.createBlock.and.returnValue(of(partialResponse));
     component.createIPBlock('10.10.0.0', '30');
-    expect(component.result.block).toEqual(partialResponse.block)
+    let convertedValue = JSON.parse(component.result);
+    expect(convertedValue.block).toEqual(partialResponse.body.block)
   });
 });

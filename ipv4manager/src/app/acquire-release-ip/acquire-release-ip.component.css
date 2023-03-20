@@ -1,3 +1,8 @@
 label.input-group-text {
     width: 19rem;
 }
+
+.invalid-input:focus {
+    border-color: #ce1821b9;
+    box-shadow: 0 0 0 .22rem #eb316040;
+}

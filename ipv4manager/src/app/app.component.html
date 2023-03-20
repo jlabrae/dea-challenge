@@ -17,6 +17,11 @@
       [ngClass]="activeTab === 'acquire-release' ? 'active' : ''"
       id="acquireReleaseTab"
       (click)="onClick('acquire-release')">Acquire/Release IP</li>
+    <li #combinedTab
+      class="nav-item nav-link"
+      [ngClass]="activeTab === 'combined' ? 'active' : ''"
+      id="combinedTab"
+      (click)="onClick('combined')">Combined</li>
   </ul>
 
   <div
@@ -31,6 +36,9 @@
     <acquire-release-ip
       *ngSwitchCase="'acquire-release'">
     </acquire-release-ip>
+    <combined
+      *ngSwitchCase="'combined'">
+    </combined>
   </div>
 
 </div>

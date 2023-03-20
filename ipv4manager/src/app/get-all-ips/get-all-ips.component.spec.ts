@@ -5,40 +5,42 @@ import { Ipv4managerService } from '../ipv4manager.service';
 import { GetAllIpsComponent } from './get-all-ips.component';
 
 describe('GetAllIpsComponent', () => {
-  const mockIpList = [
-    {
-      createDate: "2023-03-19T16:54:16.604+0000",
-      createdBy: "tester",
-      ipAddress: "10.10.0.0",
-      modifiedDate: "2023-03-19T16:54:16.604+0000",
-      netMask: "255.255.255.252",
-      status:"AVAILABLE"
-    },
-    {
-      createDate: "2023-03-19T16:54:16.604+0000",
-      createdBy: "tester",
-      ipAddress: "10.10.0.1",
-      modifiedDate: "2023-03-19T16:54:16.604+0000",
-      netMask: "255.255.255.252",
-      status:"AVAILABLE"
-    },
-    {
-      createDate: "2023-03-19T16:54:16.604+0000",
-      createdBy: "tester",
-      ipAddress: "10.10.0.2",
-      modifiedDate: "2023-03-19T16:54:16.604+0000",
-      netMask: "255.255.255.252",
-      status:"AVAILABLE"
-    },
-    {
-      createDate: "2023-03-19T16:54:16.604+0000",
-      createdBy: "tester",
-      ipAddress: "10.10.0.3",
-      modifiedDate: "2023-03-19T16:54:16.604+0000",
-      netMask: "255.255.255.252",
-      status:"AVAILABLE"
-    }
-  ];
+  const mockIpList = {
+    body: [
+      {
+        createDate: "2023-03-19T16:54:16.604+0000",
+        createdBy: "tester",
+        ipAddress: "10.10.0.0",
+        modifiedDate: "2023-03-19T16:54:16.604+0000",
+        netMask: "255.255.255.252",
+        status:"AVAILABLE"
+      },
+      {
+        createDate: "2023-03-19T16:54:16.604+0000",
+        createdBy: "tester",
+        ipAddress: "10.10.0.1",
+        modifiedDate: "2023-03-19T16:54:16.604+0000",
+        netMask: "255.255.255.252",
+        status:"AVAILABLE"
+      },
+      {
+        createDate: "2023-03-19T16:54:16.604+0000",
+        createdBy: "tester",
+        ipAddress: "10.10.0.2",
+        modifiedDate: "2023-03-19T16:54:16.604+0000",
+        netMask: "255.255.255.252",
+        status:"AVAILABLE"
+      },
+      {
+        createDate: "2023-03-19T16:54:16.604+0000",
+        createdBy: "tester",
+        ipAddress: "10.10.0.3",
+        modifiedDate: "2023-03-19T16:54:16.604+0000",
+        netMask: "255.255.255.252",
+        status:"AVAILABLE"
+      }
+    ]
+  };
   let component: GetAllIpsComponent;
   let fixture: ComponentFixture<GetAllIpsComponent>;
 
@@ -66,7 +68,7 @@ describe('GetAllIpsComponent', () => {
 
   it('should return a list of IPs', () => {
     component.getAllIPs();
-    expect(component.ipList.length).toBe(mockIpList.length);
-    expect(component.ipList).toEqual(mockIpList);
+    expect(component.ipList.length).toBe(mockIpList.body.length);
+    expect(component.ipList).toEqual(mockIpList.body);
   });
 });

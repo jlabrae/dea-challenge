@@ -30,7 +30,7 @@ describe('Ipv4managerService', () => {
     };
 
     service.createBlock(partialResponse.block).subscribe(response => {
-      expect(response.block).toEqual(partialResponse.block);
+      expect(response.body.block).toEqual(partialResponse.block);
     });
 
     const request = httpMock.expectOne(`${service.baseURL}/createBlock`);
@@ -50,8 +50,8 @@ describe('Ipv4managerService', () => {
     }];
 
     service.acquireIP(mockResponse[0].ipAddress).subscribe(response => {
-      expect(response.length).toBe(1);
-      expect(response).toEqual(mockResponse);
+      expect(response.body.length).toBe(1);
+      expect(response.body).toEqual(mockResponse);
     });
 
     const request = httpMock.expectOne(`${service.baseURL}/acquireIP`);
@@ -71,8 +71,8 @@ describe('Ipv4managerService', () => {
     }];
 
     service.releaseIP(mockResponse[0].ipAddress).subscribe(response => {
-      expect(response.length).toBe(1);
-      expect(response).toEqual(mockResponse);
+      expect(response.body.length).toBe(1);
+      expect(response.body).toEqual(mockResponse);
     });
 
     const request = httpMock.expectOne(`${service.baseURL}/releaseIP`);
@@ -119,8 +119,8 @@ describe('Ipv4managerService', () => {
     ];
 
     service.getAllIPs().subscribe(response => {
-      expect(response.length).toBe(mockResponse.length);
-      expect(response).toEqual(mockResponse);
+      expect(response.body.length).toBe(mockResponse.length);
+      expect(response.body).toEqual(mockResponse);
     });
 
     const request = httpMock.expectOne(`${service.baseURL}/getAllIPs`);
