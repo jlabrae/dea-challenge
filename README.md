@@ -8,14 +8,14 @@ To install, use [NPM](https://nodejs.org/en/download).
 
 Run `npm install` at /dea-challenge/ipv4manager/.
 
-It will also require an update to the provided project(https://github.com/githubsheema/dea-codechallenge), in file 'IPv4AMController.java'.
+It will also require an update to the provided [project](https://github.com/githubsheema/dea-codechallenge), in file 'IPv4AMController.java'.
 Need to insert:
 1) 'import org.springframework.web.bind.annotation.CrossOrigin;' in the imports 
 2) '@CrossOrigin(origins = "http://localhost:4200")' as an annotation above 'public class IPv4AMController {...'
 
 This is to enable Cross Origin Resource Sharing (CORS) with the location where the Angular application will be running.
 
-I have submitted a pull request to relevant project(https://github.com/githubsheema/dea-codechallenge) with the necessary changes.
+I have submitted a pull request to relevant [project](https://github.com/githubsheema/dea-codechallenge) with the necessary changes.
 
 ## Development server
 
